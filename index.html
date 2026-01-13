@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الهلال الأحمر - قطاعات الحرم</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f8fafc;
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:active {
+            transform: scale(0.98);
+        }
+        .fade-in {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-gray-50">
+
+    <!-- Header / Navbar -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3 cursor-pointer" onclick="showMainGrid()">
+                <!-- SVG Logo -->
+                <div class="w-10 h-10 flex items-center justify-center">
+                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full text-red-600">
+                        <path d="M12 2C13.5 2 14.9 2.3 16.2 2.9C14.8 4.2 14 6 14 8C14 12.4 17.6 16 22 16C21.4 19.4 18.5 22 15 22C11.1 22 8 18.9 8 15C8 11.5 10.6 8.6 14 8C13.4 4.6 10.5 2 7 2C4.2 2 2 4.2 2 7C2 9.8 4.2 12 7 12C9.8 12 12 9.8 12 7C12 5.2 12.6 3.5 13.6 2.2C13.1 2.1 12.6 2 12 2Z" fill="currentColor" fill-opacity="0"/>
+                        <path d="M10 21.5C6.5 20.8 3.5 18.5 2 15.5C3 15.5 4 15.2 5 14.5C6.5 17.5 9.5 19.5 13 19.5C14.5 19.5 16 19 17.2 18.2C15.8 20.2 13.5 21.5 11 21.8V21.5H10Z" fill="currentColor" fill-opacity="0"/>
+                        <path d="M15.5492 3.00098C13.7492 3.00098 12.1492 3.70098 10.9492 4.90098C9.74922 6.10098 9.04922 7.70098 9.04922 9.50098C9.04922 13.101 11.9492 16.001 15.5492 16.001C17.3492 16.001 18.9492 15.301 20.1492 14.101C17.8492 17.601 13.9492 20.001 9.54922 20.001C3.74922 20.001 -0.950781 15.301 -0.950781 9.50098C-0.950781 5.10098 1.44922 1.20098 4.94922 -1.09902C3.74922 0.100977 3.04922 1.70098 3.04922 3.50098C3.04922 7.10098 5.94922 10.001 9.54922 10.001C11.3492 10.001 12.9492 9.30098 14.1492 8.10098C12.9492 11.601 16.8492 3.00098 15.5492 3.00098Z" fill="#DC2626"/>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold text-gray-800 leading-tight">الهلال الأحمر السعودي</h1>
+                    <p class="text-[10px] text-gray-500">نطاق الحرم المكي الشريف</p>
+                </div>
+            </div>
+            
+            <!-- Back Button -->
+            <button id="backBtn" onclick="showMainGrid()" class="hidden text-sm bg-gray-100 text-gray-600 px-3 py-1 rounded-lg hover:bg-gray-200 transition flex items-center gap-1">
+                <span>الرئيسية</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" />
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow container mx-auto px-4 py-6 flex flex-col items-center">
+        
+        <!-- TITLE SECTION -->
+        <div id="pageHeader" class="text-center mb-8 w-full max-w-2xl">
+            <h2 id="mainTitle" class="text-2xl font-bold text-gray-800 mb-2">توزيع القطاعات التشغيلية</h2>
+            <p id="subTitle" class="text-gray-600 text-sm">اختر القطاع لعرض نقاط التمركز</p>
+        </div>
+
+        <!-- SECTORS GRID (Main View) -->
+        <div id="sectorsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-3xl fade-in">
+            <!-- 1. Mataf -->
+            <div onclick="openSector('mataf')" class="card-hover bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col items-center text-center cursor-pointer relative overflow-hidden group">
+                <div class="absolute top-0 left-0 w-full h-1 bg-yellow-500"></div>
+                <div class="bg-yellow-50 p-3 rounded-full mb-3 text-yellow-600 group-hover:bg-yellow-100 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <rect x="7" y="7" width="10" height="10" rx="1" stroke-width="2" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12h18M12 3v18" opacity="0.2"/>
+                    </svg>
+                </div>
+                <h3 class="font-bold text-gray-800 text-lg">قطاع المطاف و الرواق السعودي</h3>
+            </div>
+
+            <!-- 2. Masaa -->
+            <div onclick="openSector('masaa')" class="card-hover bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col items-center text-center cursor-pointer relative overflow-hidden group">
+                <div class="absolute top-0 left-0 w-full h-1 bg-red-600"></div>
+                <div class="bg-red-50 p-3 rounded-full mb-3 text-red-600 group-hover:bg-red-100 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
+                    </svg>
+                </div>
+                <h3 class="font-bold text-gray-800 text-lg">قطاع المسعى و الساحات الشرقية</h3>
+            </div>
+
+            <!-- 3. West & South -->
+            <div onclick="openSector('westSouth')" class="card-hover bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col items-center text-center cursor-pointer relative overflow-hidden group">
+                <div class="absolute top-0 left-0 w-full h-1 bg-red-600"></div>
+                <div class="bg-red-50 p-3 rounded-full mb-3 text-red-600 group-hover:bg-red-100 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+                    </svg>
+                </div>
+                <h3 class="font-bold text-gray-800 text-lg">قطاع الساحات الغربية و الجنوبية</h3>
+            </div>
+
+            <!-- 4. Expansion -->
+            <div onclick="openSector('expansion')" class="card-hover bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col items-center text-center cursor-pointer relative overflow-hidden group">
+                <div class="absolute top-0 left-0 w-full h-1 bg-red-600"></div>
+                <div class="bg-red-50 p-3 rounded-full mb-3 text-red-600 group-hover:bg-red-100 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5" />
+                    </svg>
+                </div>
+                <h3 class="font-bold text-gray-800 text-lg">قطاع التوسعة السعودية الثالثة</h3>
+            </div>
+        </div>
+
+        <!-- LOCATIONS LIST VIEW (Initially Hidden) -->
+        <div id="locationsView" class="hidden w-full max-w-3xl fade-in">
+            <div id="locationsList" class="grid grid-cols-1 gap-3">
+                <!-- Javascript will populate this -->
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 text-center py-4 mt-auto">
+        <p class="text-xs text-gray-500">هيئة الهلال الأحمر السعودي - الحرم المكي الشريف &copy; 2024</p>
+    </footer>
+
+    <script>
+    // 1. Data for Mataf Sector
+    const matafLocations = [
+        { name: "نهاية مشاية باب الملك عبد الله", url: "https://maps.app.goo.gl/QzkirSKzrqXXmCdn7" },
+        { name: "نهاية مشاية باب العمرة", url: "https://maps.app.goo.gl/Gd7RyBN6CrECs4KT9" },
+        { name: "نهاية مشاية باب الملك فهد", url: "https://maps.app.goo.gl/g74yuo4NRCFiifnGA" },
+        { name: "المحطة الاسعافية", url: "https://maps.app.goo.gl/gbJgzstT1NY4aFTN8" },
+        { name: "سلالم باب الملك فهد", url: "https://maps.app.goo.gl/SmtHQvxiTvHMTIRK9" },
+        { name: "مشاية باب الملك فهد", url: "https://maps.app.goo.gl/nB8OLDV2RGt730dd7" },
+        { name: "سلالم باب الملك عبدالله", url: "https://maps.app.goo.gl/UR3JZaWuPP8qkt5V8" },
+        { name: "الدور الأرضي باب العمرة من الداخل", url: "https://maps.app.goo.gl/1niZWRpTgs8yHdZ6A" },
+        { name: "الدور الأرضي باب ٧٤", url: "https://maps.app.goo.gl/x8nKUSUWgYbCa1D66" },
+        { name: "مصليات الملك فهد الدور الارضي", url: "https://maps.app.goo.gl/C2RLNzaQPhkhBkKL6" },
+        { name: "باب ١٤٥ من الداخل الدور الأرضي", url: "https://maps.app.goo.gl/GemabCExCaPzrDN86" },
+        { name: "مركز السلام", url: "https://maps.app.goo.gl/FGwOqQFXMbHjxKGD6" },
+        { name: "مشاية السلام", url: "https://maps.app.goo.gl/f9DRWoYqKa4SrShM9" },
+        { name: "نهاية مشاية باب الملك عبد العزيز", url: "https://maps.app.goo.gl/x66hMZhrotDxjC1L8" },
+        { name: "المسعى البدروم باب السلام", url: "https://maps.app.goo.gl/E32SDB3QE2SV3pRO7" },
+        { name: "باب الفتح", url: "https://maps.app.goo.gl/6xGhGNK2pgnrgE1H8" },
+        { name: "الطواف الدور الأرضي خط النية", url: "https://maps.app.goo.gl/VkVEyiD2VYLwTfrr9" },
+        { name: "مدخل المسعى مصلى الركعتين", url: "https://maps.app.goo.gl/b1QRWmtDwzfWxzP7" },
+        { name: "مشاية ام هاني", url: "https://maps.app.goo.gl/nsG21rkoV6ZKsMRFZ" },
+        { name: "مركز السطح", url: "https://maps.app.goo.gl/QKhybok3wso3tJmOB" },
+        { name: "المطاف سطح الحرم جسر التوسعة 3", url: "https://maps.app.goo.gl/C8oPXxwBa6k7SIN3A" },
+        { name: "سطح الحرم خط النية", url: "https://maps.app.goo.gl/qNYneRugpgNBGmTF6" },
+        { name: "سطح المطاف مزلقان العربات", url: "https://maps.app.goo.gl/JsD8U5EcMyBn5Big8" },
+        { name: "باب العمرة الدور الأول", url: "https://maps.app.goo.gl/kbN4fO7NLaNnAqAUZ" },
+        { name: "مركز الدور الأول", url: "https://maps.app.goo.gl/yj7fPGoPc6np6DP98" },
+        { name: "جسر اجياد الدور الاول", url: "https://maps.app.goo.gl/a7YpcVMnW8cMcSNW7" },
+        { name: "الميزانين الدور الاول", url: "https://maps.app.goo.gl/9zPhRTXvBjt6GMko9" },
+        { name: "باب الفتح الدور الأول", url: "https://maps.app.goo.gl/CpeparsUXnNTUU4A9" },
+        { name: "سلالم باب ٦٦ الدور الأول", url: "https://maps.app.goo.gl/LxG1Lvo8REFWxP519" }
+    ];
+
+    // 2. Data for Masaa Sector
+    const masaaLocations = [
+        { name: "المسعى الارضي باب ٢٢", url: "https://maps.app.goo.gl/akh38tZHSzubCdkn9" },
+        { name: "المسعى الأرضي باب بني شيبة", url: "https://maps.app.goo.gl/XKThbpniFpvRDeRa7" },
+        { name: "سلالم المروة", url: "https://maps.app.goo.gl/mNz513tzoUbuVxEV6" },
+        { name: "المروة الدور الأرضي", url: "https://maps.app.goo.gl/7TefUtaeSEQUbraW7" },
+        { name: "المسعى الارضي باب علي", url: "https://maps.app.goo.gl/uK18pKws2FDESema6" },
+        { name: "الصفا الدور الارضي", url: "https://maps.app.goo.gl/JCRrGoFWqfBspBoZ8" },
+        { name: "باب الصفا من الخارج الدور الأول", url: "https://maps.app.goo.gl/G2aCBzK9WVMKof7w9" },
+        { name: "الصفا الأول", url: "https://maps.app.goo.gl/wEHzBo6NYz7egY519" },
+        { name: "سلم أجياد الساحات الشرقية", url: "https://maps.app.goo.gl/yjF569qgQmZc5ztw9" },
+        { name: "مركز اسعاف القشاشية", url: "https://maps.app.goo.gl/E62NMvziRJPD5y1AA" },
+        { name: "برحة باب علي", url: "https://maps.app.goo.gl/zaGYsYnx8o9X21FcA" },
+        { name: "مواقف الجنائز بمولد النبي", url: "https://maps.app.goo.gl/yWuWzhaiDUk6rRyA9" },
+        { name: "باب علي من الخارج", url: "https://maps.app.goo.gl/NGEp7DJsRiZ4TocL9" },
+        { name: "اسفل الدائري الأول", url: "https://maps.app.goo.gl/zPZZSkNCRsnjEkb69" },
+        { name: "جسر بني شيبة من الخارج", url: "https://maps.app.goo.gl/G9KU6VWZkhgxBeXR8" }
+    ];
+
+    // 3. Data for West & South Sector
+    const westSouthLocations = [
+        { name: "الساحات الجنوبية أمام رولكس", url: "https://maps.app.goo.gl/WVXh2BmGXIKXe65j7" },
+        { name: "شارع إبراهيم الخليل أسفل الدائري الأول", url: "https://maps.app.goo.gl/uVQCd4r43PzWU93u5" },
+        { name: "المسيال أسفل الدائري الأول", url: "https://maps.app.goo.gl/nGgBfhuVtUkKyqKV8" },
+        { name: "المسيال بالساحات", url: "https://maps.app.goo.gl/hnouxRZwHPScyipy5" },
+        { name: "وقف الملك عبد العزيز", url: "https://maps.app.goo.gl/RNov2eGEGkaCt3Zw5" },
+        { name: "اسفل جسر أجياد بالساحات الجنوبية", url: "https://maps.app.goo.gl/LhxuMz2ibN8LuRi97" },
+        { name: "باب أجياد", url: "https://maps.app.goo.gl/QHHMoHh3i1dv8nyf9" },
+        { name: "باب الملك عبد العزيز", url: "https://maps.app.goo.gl/9fMs2aMX2dJUBVee8" },
+        { name: "شارع أجياد (وقف الملك عبد العزيز)", url: "https://maps.app.goo.gl/FzFVi4p3RETFa9HG6" },
+        { name: "شركة مكة للإنشاء والتعمير", url: "https://maps.app.goo.gl/NT8sg6QVPquYkyU58" },
+        { name: "مركز اسعاف الشبيكة", url: "https://maps.app.goo.gl/Pmv6M3kEyQkL2pmz8" },
+        { name: "باب العمرة من الخارج", url: "https://maps.app.goo.gl/VQAraP2K4kxRnL36A" },
+        { name: "باب ٦٦", url: "https://maps.app.goo.gl/2VKaiDmpcUJm5hFn6" },
+        { name: "باب الملك فهد من الخارج", url: "https://maps.app.goo.gl/upYqYvp66zFZrv7D6" },
+        { name: "أمام دار التوحيد", url: "https://maps.app.goo.gl/5hHBSG4houCxs6RLA" },
+        { name: "شارع إبراهيم الخليل ميدان الشبيكة", url: "https://maps.app.goo.gl/6QyiNJ4Jy9wdPJ398" },
+        { name: "مصليات باب الملك فهد", url: "https://maps.app.goo.gl/rqCxN9MAg6uVVroXA" }
+    ];
+
+    // 4. Data for Expansion Sector
+    const expansionLocations = [
+        { name: "باب 114", url: "https://maps.app.goo.gl/NnRayLbueNJutUwTZ" },
+        { name: "باب 125 ب", url: "https://maps.app.goo.gl/Ncz74oW8ugHTm2kf9" },
+        { name: "باب 106 ب", url: "https://maps.app.goo.gl/FrGjuwZz51Fyt6apZ" },
+        { name: "مصليات شوتر 1", url: "https://maps.app.goo.gl/OZzksmHxbG3RNyGS7" },
+        { name: "مصليات شوتر 2", url: "https://maps.app.goo.gl/t9NvFRpUjTBL4gq16" },
+        { name: "مصليات المساطب الشمالية الغربية", url: "https://maps.app.goo.gl/NjbNtbNRJjpdbz9e8" },
+        { name: "مصليات باب 114 الساحات الشمالية", url: "https://maps.app.goo.gl/6bipCf7qniHP8wKM8" },
+        { name: "باب 100", url: "https://maps.app.goo.gl/U7dLXUbFArAyPgd68" },
+        { name: "مركز حرم 4 باب 175", url: "https://maps.app.goo.gl/wxDw49xdN9x6vB2mZ" },
+        { name: "مصليات شوتر 3", url: "https://maps.app.goo.gl/gVsPQo1HtdJM8rod8" },
+        { name: "باب 165 ب", url: "https://maps.app.goo.gl/PvfWhtYRF8rWmVNr9" },
+        { name: "الأنفاق المؤدية الى جرول", url: "https://maps.app.goo.gl/SvoBxn97aPEMSC5SA" },
+        { name: "مصليات المساطب الشمالية الشرقية", url: "https://maps.app.goo.gl/gs9tsjNfCiqwqExs5" }
+    ];
+
+    const elements = {
+        grid: document.getElementById('sectorsGrid'),
+        list: document.getElementById('locationsView'),
+        listContainer: document.getElementById('locationsList'),
+        backBtn: document.getElementById('backBtn'),
+        title: document.getElementById('mainTitle'),
+        subTitle: document.getElementById('subTitle')
+    };
+
+    function showMainGrid() {
+        if (!elements.grid || !elements.list) return;
+        elements.grid.classList.remove('hidden');
+        elements.list.classList.add('hidden');
+        elements.backBtn.classList.add('hidden');
+        elements.title.innerText = "توزيع القطاعات التشغيلية";
+        elements.subTitle.innerText = "اختر القطاع لعرض نقاط التمركز";
+        elements.listContainer.innerHTML = ''; 
+    }
+
+    function openSector(sectorId) {
+        if (sectorId === 'mataf') {
+            renderLocationsList("قطاع المطاف و الرواق السعودي", matafLocations);
+        } else if (sectorId === 'masaa') {
+            renderLocationsList("قطاع المسعى و الساحات الشرقية", masaaLocations);
+        } else if (sectorId === 'westSouth') {
+            renderLocationsList("قطاع الساحات الغربية و الجنوبية", westSouthLocations);
+        } else if (sectorId === 'expansion') {
+            renderLocationsList("قطاع التوسعة السعودية الثالثة", expansionLocations);
+        } else {
+            alert("لا توجد بيانات لهذا القطاع حالياً.");
+        }
+    }
+
+    function renderLocationsList(sectorTitle, locations) {
+        if (!elements.grid || !elements.list) return;
+        
+        elements.grid.classList.add('hidden');
+        elements.list.classList.remove('hidden');
+        elements.backBtn.classList.remove('hidden');
+        
+        elements.title.innerText = sectorTitle;
+        elements.subTitle.innerText = "اضغط على الموقع لفتح الخريطة";
+
+        const html = locations.map(loc => `
+            <a href="${loc.url}" target="_blank" rel="noopener noreferrer" class="block w-full bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:bg-red-50 hover:border-red-200 transition flex items-center justify-between group no-underline">
+                <div class="flex items-center gap-3">
+                    <div class="bg-gray-100 p-2 rounded-full text-red-600 group-hover:bg-white transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <span class="font-semibold text-gray-700 group-hover:text-red-700">${loc.name}</span>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400 group-hover:text-red-500 transform rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+            </a>
+        `).join('');
+
+        elements.listContainer.innerHTML = html;
+        window.scrollTo(0,0);
+    }
+    </script>
+</body>
+</html>
