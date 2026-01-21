@@ -32,13 +32,9 @@
     <header class="bg-white shadow-md sticky top-0 z-50">
         <div class="container mx-auto px-4 py-3 flex items-center justify-between">
             <div class="flex items-center gap-3 cursor-pointer" onclick="showMainGrid()">
-                <!-- SVG Logo -->
-                <div class="w-10 h-10 flex items-center justify-center">
-                   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full text-red-600">
-                        <path d="M12 2C13.5 2 14.9 2.3 16.2 2.9C14.8 4.2 14 6 14 8C14 12.4 17.6 16 22 16C21.4 19.4 18.5 22 15 22C11.1 22 8 18.9 8 15C8 11.5 10.6 8.6 14 8C13.4 4.6 10.5 2 7 2C4.2 2 2 4.2 2 7C2 9.8 4.2 12 7 12C9.8 12 12 9.8 12 7C12 5.2 12.6 3.5 13.6 2.2C13.1 2.1 12.6 2 12 2Z" fill="currentColor" fill-opacity="0"/>
-                        <path d="M10 21.5C6.5 20.8 3.5 18.5 2 15.5C3 15.5 4 15.2 5 14.5C6.5 17.5 9.5 19.5 13 19.5C14.5 19.5 16 19 17.2 18.2C15.8 20.2 13.5 21.5 11 21.8V21.5H10Z" fill="currentColor" fill-opacity="0"/>
-                        <path d="M15.5492 3.00098C13.7492 3.00098 12.1492 3.70098 10.9492 4.90098C9.74922 6.10098 9.04922 7.70098 9.04922 9.50098C9.04922 13.101 11.9492 16.001 15.5492 16.001C17.3492 16.001 18.9492 15.301 20.1492 14.101C17.8492 17.601 13.9492 20.001 9.54922 20.001C3.74922 20.001 -0.950781 15.301 -0.950781 9.50098C-0.950781 5.10098 1.44922 1.20098 4.94922 -1.09902C3.74922 0.100977 3.04922 1.70098 3.04922 3.50098C3.04922 7.10098 5.94922 10.001 9.54922 10.001C11.3492 10.001 12.9492 9.30098 14.1492 8.10098C12.9492 11.601 16.8492 3.00098 15.5492 3.00098Z" fill="#DC2626"/>
-                    </svg>
+                <!-- New Red Crescent Image Logo -->
+                <div class="w-12 h-12 flex-shrink-0">
+                   <img src="Flag_of_the_Red_Crescent.jpg" alt="شعار الهلال الأحمر" class="w-full h-full object-contain">
                 </div>
                 <div>
                     <h1 class="text-lg font-bold text-gray-800 leading-tight">الهلال الأحمر السعودي</h1>
@@ -61,19 +57,26 @@
         
         <!-- TITLE SECTION -->
         <div id="pageHeader" class="text-center mb-8 w-full max-w-2xl">
+            <!-- تمت إضافة onclick و cursor-pointer للصورة -->
+            <img src="WhatsApp Image 2026-01-14 at 1.03.11 AM.jpeg" onclick="openImageModal(this.src)" class="mx-auto mb-6 w-full rounded-xl shadow-sm cursor-pointer hover:opacity-95 transition" alt="صورة توضيحية">
             <h2 id="mainTitle" class="text-2xl font-bold text-gray-800 mb-2">توزيع القطاعات التشغيلية</h2>
             <p id="subTitle" class="text-gray-600 text-sm">اختر القطاع لعرض نقاط التمركز</p>
         </div>
 
         <!-- SECTORS GRID (Main View) -->
         <div id="sectorsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-3xl fade-in">
-            <!-- 1. Mataf -->
+            <!-- 1. Mataf (تم تغيير الأيقونة هنا لتكون كعبة واضحة) -->
             <div onclick="openSector('mataf')" class="card-hover bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col items-center text-center cursor-pointer relative overflow-hidden group">
                 <div class="absolute top-0 left-0 w-full h-1 bg-yellow-500"></div>
                 <div class="bg-yellow-50 p-3 rounded-full mb-3 text-yellow-600 group-hover:bg-yellow-100 transition">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <rect x="7" y="7" width="10" height="10" rx="1" stroke-width="2" />
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12h18M12 3v18" opacity="0.2"/>
+                    <!-- أيقونة الكعبة المشرفة الجديدة -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <!-- قاعدة الكعبة -->
+                        <rect x="5" y="6" width="14" height="14" rx="1" stroke-width="2" fill="currentColor" fill-opacity="0.1"/>
+                        <!-- الحزام الذهبي -->
+                        <path d="M5 10H19" stroke-width="2" stroke="currentColor"/>
+                        <!-- باب الكعبة -->
+                        <rect x="14" y="13" width="3" height="7" stroke-width="1.5" fill="none"/>
                     </svg>
                 </div>
                 <h3 class="font-bold text-gray-800 text-lg">قطاع المطاف و الرواق السعودي</h3>
@@ -122,100 +125,501 @@
 
     </main>
 
+    <!-- Image Modal (Hidden by default) -->
+    <div id="imageModal" class="fixed inset-0 z-[100] bg-black/90 hidden flex items-center justify-center p-4 backdrop-blur-sm transition-opacity duration-300" onclick="closeImageModal()">
+        <div class="relative max-w-5xl w-full max-h-screen flex items-center justify-center">
+            <button onclick="closeImageModal()" class="absolute -top-12 right-0 text-white hover:text-red-500 transition p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            <img id="modalImage" src="" alt="عرض كامل" class="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl">
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="bg-white border-t border-gray-200 text-center py-4 mt-auto">
         <p class="text-xs text-gray-500">هيئة الهلال الأحمر السعودي - الحرم المكي الشريف &copy; 2024</p>
     </footer>
 
     <script>
-    // 1. Data for Mataf Sector
+    // Image Modal Functions
+    function openImageModal(src) {
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        if(modal && modalImg) {
+            modalImg.src = src;
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // منع التمرير في الخلفية
+        }
+    }
+
+    function closeImageModal() {
+        const modal = document.getElementById('imageModal');
+        if(modal) {
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto'; // إعادة تفعيل التمرير
+        }
+    }
+
+    // 1. Data for Mataf Sector (Updated with Coordinates where available)
     const matafLocations = [
-        { name: "نهاية مشاية باب الملك عبد الله", url: "https://maps.app.goo.gl/QzkirSKzrqXXmCdn7" },
-        { name: "نهاية مشاية باب العمرة", url: "https://maps.app.goo.gl/Gd7RyBN6CrECs4KT9" },
-        { name: "نهاية مشاية باب الملك فهد", url: "https://maps.app.goo.gl/g74yuo4NRCFiifnGA" },
-        { name: "المحطة الاسعافية", url: "https://maps.app.goo.gl/gbJgzstT1NY4aFTN8" },
-        { name: "سلالم باب الملك فهد", url: "https://maps.app.goo.gl/SmtHQvxiTvHMTIRK9" },
-        { name: "مشاية باب الملك فهد", url: "https://maps.app.goo.gl/nB8OLDV2RGt730dd7" },
-        { name: "سلالم باب الملك عبدالله", url: "https://maps.app.goo.gl/UR3JZaWuPP8qkt5V8" },
-        { name: "الدور الأرضي باب العمرة من الداخل", url: "https://maps.app.goo.gl/1niZWRpTgs8yHdZ6A" },
-        { name: "الدور الأرضي باب ٧٤", url: "https://maps.app.goo.gl/x8nKUSUWgYbCa1D66" },
-        { name: "مصليات الملك فهد الدور الارضي", url: "https://maps.app.goo.gl/C2RLNzaQPhkhBkKL6" },
-        { name: "باب ١٤٥ من الداخل الدور الأرضي", url: "https://maps.app.goo.gl/GemabCExCaPzrDN86" },
-        { name: "مركز السلام", url: "https://maps.app.goo.gl/FGwOqQFXMbHjxKGD6" },
-        { name: "مشاية السلام", url: "https://maps.app.goo.gl/f9DRWoYqKa4SrShM9" },
-        { name: "نهاية مشاية باب الملك عبد العزيز", url: "https://maps.app.goo.gl/x66hMZhrotDxjC1L8" },
-        { name: "المسعى البدروم باب السلام", url: "https://maps.app.goo.gl/E32SDB3QE2SV3pRO7" },
-        { name: "باب الفتح", url: "https://maps.app.goo.gl/6xGhGNK2pgnrgE1H8" },
-        { name: "الطواف الدور الأرضي خط النية", url: "https://maps.app.goo.gl/VkVEyiD2VYLwTfrr9" },
-        { name: "مدخل المسعى مصلى الركعتين", url: "https://maps.app.goo.gl/b1QRWmtDwzfWxzP7" },
-        { name: "مشاية ام هاني", url: "https://maps.app.goo.gl/nsG21rkoV6ZKsMRFZ" },
-        { name: "مركز السطح", url: "https://maps.app.goo.gl/QKhybok3wso3tJmOB" },
-        { name: "المطاف سطح الحرم جسر التوسعة 3", url: "https://maps.app.goo.gl/C8oPXxwBa6k7SIN3A" },
-        { name: "سطح الحرم خط النية", url: "https://maps.app.goo.gl/qNYneRugpgNBGmTF6" },
-        { name: "سطح المطاف مزلقان العربات", url: "https://maps.app.goo.gl/JsD8U5EcMyBn5Big8" },
-        { name: "باب العمرة الدور الأول", url: "https://maps.app.goo.gl/kbN4fO7NLaNnAqAUZ" },
-        { name: "مركز الدور الأول", url: "https://maps.app.goo.gl/yj7fPGoPc6np6DP98" },
-        { name: "جسر اجياد الدور الاول", url: "https://maps.app.goo.gl/a7YpcVMnW8cMcSNW7" },
-        { name: "الميزانين الدور الاول", url: "https://maps.app.goo.gl/9zPhRTXvBjt6GMko9" },
-        { name: "باب الفتح الدور الأول", url: "https://maps.app.goo.gl/CpeparsUXnNTUU4A9" },
-        { name: "سلالم باب ٦٦ الدور الأول", url: "https://maps.app.goo.gl/LxG1Lvo8REFWxP519" }
+        { 
+            name: "نهاية مشاية باب الملك عبد الله", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42314,39.82570",
+            desc: "اسفل لافتة الملك عبدالله صحن المطاف",
+            health: "المركز الصحي 3"
+        },
+        { 
+            name: "نهاية مشاية باب العمرة", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42277,39.82494",
+            desc: "اسفل سلم العمرة صحن المطاف",
+            health: "المركز الصحي 3"
+        },
+        { 
+            name: "نهاية مشاية باب الملك فهد", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42198,39.82581", 
+            desc: "أسفل سلم 15 مصليات الملك فهد صحن المطاف",
+            health: "المركز الصحي 3"
+        },
+        { 
+            name: "المحطة الاسعافية", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42197,39.82465",
+            desc: "بدروم الملك فهد باب 83",
+            health: "المركز الصحي 1 - المركز الصحي 3"
+        },
+        { 
+            name: "سلالم باب الملك فهد", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42198,39.82524",
+            desc: "سلالم 14 و 15 الدور الأرضي",
+            health: "المركز الصحي 1 - المركز الصحي 3"
+        },
+        { 
+            name: "مشاية باب الملك فهد", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42155,39.82470",
+            desc: "باب 79 من الداخل اتجاه المطاف الأرضي",
+            health: "المركز الصحي 1 - مستشفى جوار"
+        },
+        { 
+            name: "سلالم باب الملك عبدالله", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42314,39.82572", // Updated based on request
+            desc: "اسفل سلالم الملك عبد الله صحن المطاف",
+            health: "مستشفى جوار - المركز الصحي 3"
+        },
+        { 
+            name: "الدور الأرضي باب العمرة من الداخل", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.422778,39.824944",
+            desc: "مدخل باب العمرة من اليمين",
+            health: "مستشفى جوار"
+        },
+        { 
+            name: "الدور الأرضي باب ٧٤", 
+            url: "https://maps.app.goo.gl/x8nKUSUWgYbCa1D66", // No coordinates in PDF, keeping original
+            desc: "باب 74 من الداخل في المصليات النسائية",
+            health: "المركز الصحي 1 - مستشفى جوار"
+        },
+        { 
+            name: "مصليات الملك فهد الدور الارضي", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42151,39.82570",
+            desc: "باب 94 من الداخل",
+            health: "المركز الصحي 1"
+        },
+        { 
+            name: "باب ١٤٥ من الداخل الدور الأرضي", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42361,39.82583",
+            desc: "باب الفتح من الداخل",
+            health: "المركز الصحي 3"
+        },
+        { 
+            name: "مركز السلام", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42231,39.82670",
+            desc: "خلف مصلى المهمات",
+            health: "المركز الصحي 3"
+        },
+        { 
+            name: "مشاية السلام", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42297,39.82663",
+            desc: "مشاية السلام صحن المطاف",
+            health: "المركز الصحي 3"
+        },
+        { 
+            name: "نهاية مشاية باب الملك عبد العزيز", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42188,39.82632",
+            desc: "اسفل سلم الملك عبد العزيز صحن المطاف",
+            health: "المركز الصحي 3"
+        },
+        { 
+            name: "المسعى البدروم باب السلام", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42277,39.82703",
+            desc: "مدخل باب السلام",
+            health: "المركز الصحي 3"
+        },
+        { 
+            name: "باب الفتح", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42344,39.82680",
+            desc: "مدخل باب الفتح",
+            health: "المركز الصحي 3 - مستشفى الجوار"
+        },
+        { 
+            name: "الطواف الدور الأرضي خط النية", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42178,39.82694",
+            desc: "المطاف اللمبة الخضراء",
+            health: "المركز الصحي 3"
+        },
+        { 
+            name: "مدخل المسعى مصلى الركعتين", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42318,39.82704",
+            desc: "صحن المطاف خط النية",
+            health: "المركز الصحي 3"
+        },
+        { 
+            name: "مشاية ام هاني", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42271,39.82720",
+            desc: "مخرج الصفا الدور الأرضى بإتجاه اليسار",
+            health: "المركز الصحي 3"
+        },
+        { 
+            name: "مركز السطح", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42108,39.82517",
+            desc: "يمين باب 79 السطح",
+            health: "المركز الصحي 1"
+        },
+        { 
+            name: "المطاف سطح الحرم جسر التوسعة 3", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42335,39.82547",
+            desc: "سلالم 145 السطح",
+            health: "المركز الصحي 1"
+        },
+        { 
+            name: "سطح الحرم خط النية", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42168,39.82672",
+            desc: "سلالم اجياد السطح",
+            health: "المركز الصحي 3"
+        },
+        { 
+            name: "سطح المطاف مزلقان العربات", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42322,39.82689",
+            desc: "مدخل جسر اجياد سلم 3 السطح",
+            health: "المركز الصحي 4"
+        },
+        { 
+            name: "باب العمرة الدور الأول", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42314,39.82511",
+            desc: "سلالم 66 الدور الأول باتجاه اليسار",
+            health: "المركز الصحي 1 - مستشفى الجوار"
+        },
+        { 
+            name: "مركز الدور الأول", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42141,39.82437",
+            desc: "بجوار باب 79 الدور الأول",
+            health: "المركز الصحي 1"
+        },
+        { 
+            name: "جسر اجياد الدور الاول", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42144,39.82643",
+            desc: "جسر اجياد من الداخل",
+            health: "المركز الصحي 4 - مستشفى اجياد"
+        },
+        { 
+            name: "الميزانين الدور الاول", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42241,39.82707",
+            desc: "سلالم ومصاعد الأرقم - باب 22 السطح",
+            health: "المركز الصحي 4"
+        },
+        { 
+            name: "باب الفتح الدور الأول", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42368,39.82644",
+            desc: "باب 45",
+            health: "المركز الصحي 1"
+        },
+        { 
+            name: "سلالم باب ٦٦ الدور الأول", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42236,39.82507",
+            desc: "مصليات باب 66 الدور الأول من الداخل",
+            health: "المركز الصحي 1"
+        }
     ];
 
-    // 2. Data for Masaa Sector
+    // 2. Data for Masaa Sector (Updated with Coordinates where available)
     const masaaLocations = [
-        { name: "المسعى الارضي باب ٢٢", url: "https://maps.app.goo.gl/akh38tZHSzubCdkn9" },
-        { name: "المسعى الأرضي باب بني شيبة", url: "https://maps.app.goo.gl/XKThbpniFpvRDeRa7" },
-        { name: "سلالم المروة", url: "https://maps.app.goo.gl/mNz513tzoUbuVxEV6" },
-        { name: "المروة الدور الأرضي", url: "https://maps.app.goo.gl/7TefUtaeSEQUbraW7" },
-        { name: "المسعى الارضي باب علي", url: "https://maps.app.goo.gl/uK18pKws2FDESema6" },
-        { name: "الصفا الدور الارضي", url: "https://maps.app.goo.gl/JCRrGoFWqfBspBoZ8" },
-        { name: "باب الصفا من الخارج الدور الأول", url: "https://maps.app.goo.gl/G2aCBzK9WVMKof7w9" },
-        { name: "الصفا الأول", url: "https://maps.app.goo.gl/wEHzBo6NYz7egY519" },
-        { name: "سلم أجياد الساحات الشرقية", url: "https://maps.app.goo.gl/yjF569qgQmZc5ztw9" },
-        { name: "مركز اسعاف القشاشية", url: "https://maps.app.goo.gl/E62NMvziRJPD5y1AA" },
-        { name: "برحة باب علي", url: "https://maps.app.goo.gl/zaGYsYnx8o9X21FcA" },
-        { name: "مواقف الجنائز بمولد النبي", url: "https://maps.app.goo.gl/yWuWzhaiDUk6rRyA9" },
-        { name: "باب علي من الخارج", url: "https://maps.app.goo.gl/NGEp7DJsRiZ4TocL9" },
-        { name: "اسفل الدائري الأول", url: "https://maps.app.goo.gl/zPZZSkNCRsnjEkb69" },
-        { name: "جسر بني شيبة من الخارج", url: "https://maps.app.goo.gl/G9KU6VWZkhgxBeXR8" }
+        { 
+            name: "المسعى الارضي باب ٢٢", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42345,39.82746",
+            desc: "باب 22 من الداخل",
+            health: "المركز الصحي 3"
+        },
+        { 
+            name: "المسعى الأرضي باب بني شيبة", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42407,39.82724",
+            desc: "وسط المسعى من الداخل",
+            health: "المركز الصحي 3"
+        },
+        { 
+            name: "سلالم المروة", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42476,39.82737",
+            desc: "سلالم المروة الدور الأرضي من الداخل",
+            health: "المركز الصحي 3"
+        },
+        { 
+            name: "المروة الدور الأرضي", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42547,39.82725",
+            desc: "باب 25 من الداخل",
+            health: "المركز الصحي 3"
+        },
+        { 
+            name: "المسعى الارضي باب علي", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42288,39.82756",
+            desc: "باب 17",
+            health: "المركز الصحي 3"
+        },
+        { 
+            name: "الصفا الدور الارضي", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42191,39.82760",
+            desc: "باب 13",
+            health: "المركز الصحي 3"
+        },
+        { 
+            name: "باب الصفا من الخارج الدور الأول", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42240,39.82782",
+            desc: "سلالم الأرقم من الخارج جسر اجياد",
+            health: "المركز الصحي 4"
+        },
+        { 
+            name: "الصفا الأول", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42184,39.82724",
+            desc: "باب 11 - داخل سلم اجياد باتجاه اليمين",
+            health: "المركز الصحي 4 - مستشفى اجياد"
+        },
+        { 
+            name: "سلم أجياد الساحات الشرقية", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42381,39.82903",
+            desc: "سلم أجياد الساحات الشرقية",
+            health: "المركز الصحي 4 - مستشفى اجياد"
+        },
+        { 
+            name: "مركز اسعاف القشاشية", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42474,39.82904",
+            desc: "اعلى دورة مياه 9",
+            health: "المركز الصحي 3 - مستشفى اجياد"
+        },
+        { 
+            name: "برحة باب علي", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42366,39.83095",
+            desc: "مواقف الباصات برحة باب علي",
+            health: "المركز الصحي 3"
+        },
+        { 
+            name: "مواقف الجنائز بمولد النبي", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42602,39.82899",
+            desc: "بجوار ادارة هيئة الأمر بالمعروف والنهي عن المنكر",
+            health: "المركز الصحي 3"
+        },
+        { 
+            name: "باب علي من الخارج", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42308,39.82792",
+            desc: "مقابل باب 17 في الساحات",
+            health: "المركز الصحي 3"
+        },
+        { 
+            name: "اسفل الدائري الأول", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42732,39.82878",
+            desc: "اسفل كبرى الغزة",
+            health: "المركز الصحي 3"
+        },
+        { 
+            name: "جسر بني شيبة من الخارج", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42439,39.82775",
+            desc: "مقابل باب 23",
+            health: "المركز الصحي 3"
+        }
     ];
 
-    // 3. Data for West & South Sector
+    // 3. Data for West & South Sector (Updated with Coordinates where available)
     const westSouthLocations = [
-        { name: "الساحات الجنوبية أمام رولكس", url: "https://maps.app.goo.gl/WVXh2BmGXIKXe65j7" },
-        { name: "شارع إبراهيم الخليل أسفل الدائري الأول", url: "https://maps.app.goo.gl/uVQCd4r43PzWU93u5" },
-        { name: "المسيال أسفل الدائري الأول", url: "https://maps.app.goo.gl/nGgBfhuVtUkKyqKV8" },
-        { name: "المسيال بالساحات", url: "https://maps.app.goo.gl/hnouxRZwHPScyipy5" },
-        { name: "وقف الملك عبد العزيز", url: "https://maps.app.goo.gl/RNov2eGEGkaCt3Zw5" },
-        { name: "اسفل جسر أجياد بالساحات الجنوبية", url: "https://maps.app.goo.gl/LhxuMz2ibN8LuRi97" },
-        { name: "باب أجياد", url: "https://maps.app.goo.gl/QHHMoHh3i1dv8nyf9" },
-        { name: "باب الملك عبد العزيز", url: "https://maps.app.goo.gl/9fMs2aMX2dJUBVee8" },
-        { name: "شارع أجياد (وقف الملك عبد العزيز)", url: "https://maps.app.goo.gl/FzFVi4p3RETFa9HG6" },
-        { name: "شركة مكة للإنشاء والتعمير", url: "https://maps.app.goo.gl/NT8sg6QVPquYkyU58" },
-        { name: "مركز اسعاف الشبيكة", url: "https://maps.app.goo.gl/Pmv6M3kEyQkL2pmz8" },
-        { name: "باب العمرة من الخارج", url: "https://maps.app.goo.gl/VQAraP2K4kxRnL36A" },
-        { name: "باب ٦٦", url: "https://maps.app.goo.gl/2VKaiDmpcUJm5hFn6" },
-        { name: "باب الملك فهد من الخارج", url: "https://maps.app.goo.gl/upYqYvp66zFZrv7D6" },
-        { name: "أمام دار التوحيد", url: "https://maps.app.goo.gl/5hHBSG4houCxs6RLA" },
-        { name: "شارع إبراهيم الخليل ميدان الشبيكة", url: "https://maps.app.goo.gl/6QyiNJ4Jy9wdPJ398" },
-        { name: "مصليات باب الملك فهد", url: "https://maps.app.goo.gl/rqCxN9MAg6uVVroXA" }
+        { 
+            name: "الساحات الجنوبية أمام رولكس", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42031,39.82350",
+            desc: "الساحات الجنوبية امام رولكس",
+            health: "مستشفى الجوار"
+        },
+        { 
+            name: "شارع إبراهيم الخليل أسفل الدائري الأول", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.41886,39.82267",
+            desc: "اسفل الدائري الأول مقابل فندق جميرا",
+            health: "مستشفى الجوار"
+        },
+        { 
+            name: "المسيال أسفل الدائري الأول", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.41864,39.82372",
+            desc: "مابين شركة مكة للإنشاء والتعمير وبرج الساعة",
+            health: "مستشفى الجوار"
+        },
+        { 
+            name: "المسيال بالساحات", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.41981,39.82470",
+            desc: "بجوار دورة مياه 4",
+            health: "مستشفى الجوار"
+        },
+        { 
+            name: "وقف الملك عبد العزيز", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.41998,39.82573",
+            desc: "داخل السوق الدور الأرضي",
+            health: "مستشفى أجياد"
+        },
+        { 
+            name: "اسفل جسر أجياد بالساحات الجنوبية", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42038,39.82646",
+            desc: "يمين باب الملك عبد العزيز المغلق",
+            health: "مستشفى أجياد - المركز الصحي 3"
+        },
+        { 
+            name: "باب أجياد", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42093,39.82633",
+            desc: "بجوار جسر اجياد من الاسفل",
+            health: "مستشفى أجياد - المركز الصحي 3"
+        },
+        { 
+            name: "باب الملك عبد العزيز", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42094,39.82578",
+            desc: "باب 1 مقابل مدخل برج الساعة",
+            health: "مستشفى أجياد - المركز الصحي 3"
+        },
+        { 
+            name: "شارع أجياد (وقف الملك عبد العزيز)", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.41937,39.82717",
+            desc: "مقابل دورات مياه 1 - مدخل الفنادق من نفق السوق الصغير",
+            health: "مستشفى أجياد"
+        },
+        { 
+            name: "شركة مكة للإنشاء والتعمير", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.41909,39.82306",
+            desc: "داخل أسواق شركة مكة للإنشاء والتعمير",
+            health: "مستشفى الجوار"
+        },
+        { 
+            name: "مركز اسعاف الشبيكة", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42171,39.82228",
+            desc: "المركز الاسعافي",
+            health: "مستشفى الجوار"
+        },
+        { 
+            name: "باب العمرة من الخارج", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42286,39.82454",
+            desc: "باب العمرة من الخارج",
+            health: "مستشفى الجوار"
+        },
+        { 
+            name: "باب ٦٦", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42239,39.82412",
+            desc: "باب 66 من الخارج",
+            health: "مستشفى الجوار"
+        },
+        { 
+            name: "باب الملك فهد من الخارج", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42121,39.82398",
+            desc: "باب 79 من الخارج",
+            health: "مستشفى الجوار - المركز الصحي 1"
+        },
+        { 
+            name: "أمام دار التوحيد", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42065,39.82318",
+            desc: "الساحات الغربية مقابل دار التوحيد",
+            health: "مستشفى الجوار"
+        },
+        { 
+            name: "شارع إبراهيم الخليل ميدان الشبيكة", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42107,39.82222",
+            desc: "أمام الدفاع المدني شارع ابراهيم الخليل",
+            health: "مستشفى الجوار"
+        },
+        { 
+            name: "مصليات باب الملك فهد", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42190,39.82332",
+            desc: "بجوار دورة مياه 8",
+            health: "مستشفى الجوار"
+        }
     ];
 
-    // 4. Data for Expansion Sector
+    // 4. Data for Expansion Sector (Updated with Coordinates where available)
     const expansionLocations = [
-        { name: "باب 114", url: "https://maps.app.goo.gl/NnRayLbueNJutUwTZ" },
-        { name: "باب 125 ب", url: "https://maps.app.goo.gl/Ncz74oW8ugHTm2kf9" },
-        { name: "باب 106 ب", url: "https://maps.app.goo.gl/FrGjuwZz51Fyt6apZ" },
-        { name: "مصليات شوتر 1", url: "https://maps.app.goo.gl/OZzksmHxbG3RNyGS7" },
-        { name: "مصليات شوتر 2", url: "https://maps.app.goo.gl/t9NvFRpUjTBL4gq16" },
-        { name: "مصليات المساطب الشمالية الغربية", url: "https://maps.app.goo.gl/NjbNtbNRJjpdbz9e8" },
-        { name: "مصليات باب 114 الساحات الشمالية", url: "https://maps.app.goo.gl/6bipCf7qniHP8wKM8" },
-        { name: "باب 100", url: "https://maps.app.goo.gl/U7dLXUbFArAyPgd68" },
-        { name: "مركز حرم 4 باب 175", url: "https://maps.app.goo.gl/wxDw49xdN9x6vB2mZ" },
-        { name: "مصليات شوتر 3", url: "https://maps.app.goo.gl/gVsPQo1HtdJM8rod8" },
-        { name: "باب 165 ب", url: "https://maps.app.goo.gl/PvfWhtYRF8rWmVNr9" },
-        { name: "الأنفاق المؤدية الى جرول", url: "https://maps.app.goo.gl/SvoBxn97aPEMSC5SA" },
-        { name: "مصليات المساطب الشمالية الشرقية", url: "https://maps.app.goo.gl/gs9tsjNfCiqwqExs5" }
+        { 
+            name: "باب 114", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42359,39.82292",
+            desc: "باب 114 من الداخل",
+            health: "مستشفى الجوار"
+        },
+        { 
+            name: "باب 125 ب", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42320,39.82401",
+            desc: "باب 125 من الداخل",
+            health: "مستشفى الجوار"
+        },
+        { 
+            name: "باب 106 ب", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42432,39.82333",
+            desc: "باب 106 من الداخل",
+            health: "مستشفى الحرم"
+        },
+        { 
+            name: "مصليات شوتر 1", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42453,39.82411",
+            desc: "الدور الأول شوتر 1",
+            health: "مستشفى الحرم"
+        },
+        { 
+            name: "مصليات شوتر 2", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42383,39.82469",
+            desc: "الدور الأول شوتر 2",
+            health: "مستشفى الحرم"
+        },
+        { 
+            name: "مصليات المساطب الشمالية الغربية", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42628,39.82247",
+            desc: "المدرجات بجوار مستشفى الحرم",
+            health: "مستشفى الحرم"
+        },
+        { 
+            name: "مصليات باب 114 الساحات الشمالية", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42463,39.82248",
+            desc: "باب 114 الساحات الشمالية - مصليات",
+            health: "مستشفى الحرم"
+        },
+        { 
+            name: "باب 100", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42538,39.82428",
+            desc: "باب 100 من الداخل",
+            health: "مستشفى الحرم"
+        },
+        { 
+            name: "مركز حرم 4 باب 175", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42581,39.82569",
+            desc: "المركز الاسعافي بالتوسعة السعودية الثالثة",
+            health: "مستشفى الحرم"
+        },
+        { 
+            name: "مصليات شوتر 3", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42521,39.82539",
+            desc: "الدور الأول شوتر 3",
+            health: "مستشفى الحرم"
+        },
+        { 
+            name: "باب 165 ب", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42639,39.82693",
+            desc: "باب 165 من الداخل",
+            health: "مستشفى الحرم"
+        },
+        { 
+            name: "الأنفاق المؤدية الى جرول", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42632,39.82353",
+            desc: "بجوار مستشفى الحرم",
+            health: "مستشفى الحرم"
+        },
+        { 
+            name: "مصليات المساطب الشمالية الشرقية", 
+            url: "https://www.google.com/maps/search/?api=1&query=21.42716,39.82406",
+            desc: "المدرجات الشرقية يسار مستشفى الحرم",
+            health: "مستشفى الحرم"
+        }
     ];
 
     const elements = {
@@ -263,17 +667,37 @@
 
         const html = locations.map(loc => `
             <a href="${loc.url}" target="_blank" rel="noopener noreferrer" class="block w-full bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:bg-red-50 hover:border-red-200 transition flex items-center justify-between group no-underline">
-                <div class="flex items-center gap-3">
-                    <div class="bg-gray-100 p-2 rounded-full text-red-600 group-hover:bg-white transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                            <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
-                        </svg>
+                <div class="flex flex-col gap-2 w-full">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-gray-100 p-2 rounded-full text-red-600 group-hover:bg-white transition shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <span class="font-semibold text-gray-700 group-hover:text-red-700">${loc.name}</span>
                     </div>
-                    <span class="font-semibold text-gray-700 group-hover:text-red-700">${loc.name}</span>
+                    
+                    ${loc.desc || loc.health ? `
+                    <div class="mr-12 mt-1 text-sm bg-gray-50 p-2 rounded-md border border-gray-100">
+                        ${loc.desc ? `
+                        <div class="flex items-start gap-2 mb-1">
+                            <span class="font-bold text-gray-500 text-xs shrink-0 w-20">الوصف:</span>
+                            <span class="text-gray-600 text-xs">${loc.desc}</span>
+                        </div>` : ''}
+                        
+                        ${loc.health ? `
+                        <div class="flex items-start gap-2">
+                            <span class="font-bold text-gray-500 text-xs shrink-0 w-20">أقرب منشأة:</span>
+                            <span class="text-red-600 font-medium text-xs">${loc.health}</span>
+                        </div>` : ''}
+                    </div>
+                    ` : ''}
                 </div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400 group-hover:text-red-500 transform rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                </svg>
+                <div class="self-start mt-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400 group-hover:text-red-500 transform rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                </div>
             </a>
         `).join('');
 
