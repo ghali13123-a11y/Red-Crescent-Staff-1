@@ -53,7 +53,7 @@
     </header>
 
     <!-- Main Content Area -->
-    <main class="flex-grow container mx-auto px-4 py-6 flex flex-col items-center">
+    <main class="flex-grow container mx-auto px-4 py-6 flex flex-col items-center pb-20">
         
         <!-- TITLE SECTION -->
         <div id="pageHeader" class="text-center mb-8 w-full max-w-2xl">
@@ -65,10 +65,10 @@
 
         <!-- SECTORS GRID (Main View) -->
         <div id="sectorsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-3xl fade-in">
-            <!-- 1. Mataf (تم تغيير الأيقونة هنا لتكون كعبة واضحة) -->
+            <!-- 1. Mataf (تم توحيد اللون إلى الأحمر) -->
             <div onclick="openSector('mataf')" class="card-hover bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex flex-col items-center text-center cursor-pointer relative overflow-hidden group">
-                <div class="absolute top-0 left-0 w-full h-1 bg-yellow-500"></div>
-                <div class="bg-yellow-50 p-3 rounded-full mb-3 text-yellow-600 group-hover:bg-yellow-100 transition">
+                <div class="absolute top-0 left-0 w-full h-1 bg-red-600"></div>
+                <div class="bg-red-50 p-3 rounded-full mb-3 text-red-600 group-hover:bg-red-100 transition">
                     <!-- أيقونة الكعبة المشرفة الجديدة -->
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <!-- قاعدة الكعبة -->
@@ -137,7 +137,40 @@
         </div>
     </div>
 
-    
+    <!-- Footer Section (Lost & Found / Device Info) -->
+    <footer class="bg-white border-t border-gray-200 mt-auto w-full py-6">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <div class="bg-red-50 border-r-4 border-red-600 rounded-lg p-4 flex flex-col md:flex-row items-center justify-between gap-4 shadow-sm">
+                <div class="text-right flex-1">
+                    <div class="flex items-center gap-2 mb-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <p class="font-bold text-red-800 text-sm">معلومات الجهاز</p>
+                    </div>
+                    <p class="text-gray-700 text-sm leading-relaxed font-semibold">
+                        هذا التابلت خاص لفرقة إسعافية بالهلال الأحمر السعودي.
+                    </p>
+                    <p class="text-gray-600 text-xs leading-relaxed mt-1">
+                        في حال العثور على هذا التابلت مفقوداً، نرجو منكم التكرم بالتواصل فوراً على الرقم:
+                        <br class="md:hidden" />
+                        <a href="tel:0553557865" class="font-bold text-red-600 hover:text-red-800 mx-1 text-sm bg-white px-2 py-0.5 rounded border border-red-200 inline-block mt-1 md:mt-0" dir="ltr">0553557865</a>
+                    </p>
+                </div>
+                
+                <div class="bg-white p-3 rounded-xl shadow-sm border border-red-100 text-center min-w-[130px] flex flex-col items-center justify-center shrink-0">
+                    <p class="text-xs text-gray-500 mb-1 font-bold">طوارئ الإسعاف</p>
+                    <div class="flex items-center gap-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-600" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                        </svg>
+                        <a href="tel:997" class="text-2xl font-black text-red-600 tracking-wider hover:text-red-800" dir="ltr">997</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <script>
     // Image Modal Functions
     function openImageModal(src) {
